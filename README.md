@@ -87,3 +87,17 @@ lib/
 
 - Önizleme en fazla 1400 px kenar uzunluğunda işlenir; bu yalnızca ekrandaki görüntüyü etkiler, indirilen PNG orijinal çözünürlüktedir.
 - Çok büyük görsellerde (ör. 8000 px+) tarayıcı canvas bellek sınırlarına takılabilir; böyle bir durumda uygulama hata mesajı gösterir.
+
+## Sürüm / güvenlik notu
+
+Vercel, deploy sırasında bilinen güvenlik açığı olan Next.js sürümlerini tespit edip
+**"Vulnerable version of Next.js detected"** uyarısı verir. Proje bu nedenle Next.js 16
+ve React 19.3 ile sabitlenmiştir; `npm audit` çıktısı temizdir.
+
+Böyle bir uyarı ileride tekrar görülürse:
+
+```bash
+npm install next@latest react@latest react-dom@latest
+npm audit fix
+npm run build
+```

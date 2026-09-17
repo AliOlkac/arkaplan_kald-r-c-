@@ -63,8 +63,9 @@ export default function Home() {
     if (!canvas) return;
 
     setBusy(true);
-    // Bir frame bekleyerek slider'ın akıcı kalmasını sağlar.
-    const frame = requestAnimationFrame(() => {
+    // Bir tik bekleyerek slider'ın akıcı kalmasını sağlar. setTimeout kullanılır çünkü
+    // requestAnimationFrame arka plandaki sekmelerde hiç tetiklenmez ve önizleme asılı kalırdı.
+    const timer = window.setTimeout(() => {
       try {
         const { width, height } = fitWithin(image.width, image.height, PREVIEW_MAX_SIZE);
         renderProcessed(image.element, width, height, options, canvas);
@@ -73,9 +74,9 @@ export default function Home() {
       } finally {
         setBusy(false);
       }
-    });
+    }, 0);
 
-    return () => cancelAnimationFrame(frame);
+    return () => window.clearTimeout(timer);
   }, [image, options, mode]);
 
   // Sayfa kapanırken object URL temizliği
