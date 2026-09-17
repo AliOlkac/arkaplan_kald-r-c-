@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f6f7f9;
+  --foreground: #0f172a;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0b0f17;
+    --foreground: #e6edf7;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Şeffaf alanları göstermek için dama tahtası deseni */
+.checkerboard {
+  background-image:
+    linear-gradient(45deg, #d7dbe2 25%, transparent 25%),
+    linear-gradient(-45deg, #d7dbe2 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #d7dbe2 75%),
+    linear-gradient(-45deg, transparent 75%, #d7dbe2 75%);
+  background-size: 16px 16px;
+  background-position: 0 0, 0 8px, 8px -8px, -8px 0;
+  background-color: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  .checkerboard {
+    background-image:
+      linear-gradient(45deg, #232b38 25%, transparent 25%),
+      linear-gradient(-45deg, #232b38 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #232b38 75%),
+      linear-gradient(-45deg, transparent 75%, #232b38 75%);
+    background-color: #161c27;
+  }
+}
+
+/* Slider görünümü */
+input[type="range"] {
+  accent-color: #2563eb;
+}
